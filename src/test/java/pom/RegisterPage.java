@@ -12,7 +12,7 @@ public class RegisterPage {
         this.driver = driver;
     }
 
-    //Открытие главной страницы
+    //Открытие страницы регистрации
     public RegisterPage openPage() {
         driver.get(url_register);
         return this;
@@ -30,6 +30,11 @@ public class RegisterPage {
 
     //Поле ввода пароля
     private final By passwordField = By.xpath(".//label[text()='Пароль']/following-sibling::input");
+
+    //Строка сообщения об ошибке
+    private final By errorMessage = By.xpath(".//p[contains(@class,'input__error')]");
+
+    private final By loginButton = By.xpath(".//a[text()='Войти']");
 
 
     //Клик по кнопке  Зарегистрироваться
@@ -53,5 +58,15 @@ public class RegisterPage {
     public RegisterPage inputToPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
         return this;
+    }
+
+    //Получение текста в сообщении об ошибке
+    public String getErrorMessage(){
+        return driver.findElement(errorMessage).getText();
+    }
+
+    //Клик по ссылке Войти
+    public void clickLinkLogin(){
+        driver.findElement(loginButton).click();
     }
 }

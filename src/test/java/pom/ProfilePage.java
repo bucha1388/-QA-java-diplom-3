@@ -2,6 +2,10 @@ package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ProfilePage {
 
@@ -12,7 +16,7 @@ public class ProfilePage {
         this.driver = driver;
     }
 
-    //Открытие главной страницы
+    //Открытие страницы Профиля
     public ProfilePage openPage() {
         driver.get(url_login);
         return this;
@@ -23,6 +27,13 @@ public class ProfilePage {
 
     //Кнопка Выйти
     private final By buttonExit = By.xpath(".//button[text()='Выход']");
+
+    public By getProfileText() {
+        return profileText;
+    }
+
+    //Кнопка Профиль
+    private final By profileText = By.xpath(".//a[text()='Профиль']");
 
 
     //Кнопка конструктор
@@ -42,6 +53,12 @@ public class ProfilePage {
     //Клик по вкладке конструктор
     public void clickConstructor(){
         driver.findElement(constructorLink).click();
+    }
+
+    public ProfilePage waitExitButton(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(buttonExit));
+        return this;
     }
 
 }

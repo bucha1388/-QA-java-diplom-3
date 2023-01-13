@@ -13,7 +13,7 @@ public class ForgotPasswordPage {
         this.driver = driver;
     }
 
-    //Открытие главной страницы
+    //Открытие страницы Забыли пароль
     public ForgotPasswordPage openPage() {
         driver.get(url_fp);
         return this;

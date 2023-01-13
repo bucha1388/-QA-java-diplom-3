@@ -1,9 +1,19 @@
 package pom;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static testdata.TestData.MAIN_EMAIL;
+import static testdata.TestData.MAIN_PASSWORD;
 
 public class LoginPage {
+
+
     private final String url_login = "https://stellarburgers.nomoreparties.site/login";
 
     public WebDriver driver;
@@ -11,11 +21,12 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    //Открытие главной страницы
+    //Открытие страницы регистрации
     public LoginPage openPage() {
         driver.get(url_login);
         return this;
     }
+
 
     //Кнопка Войти
     private final By buttonLogin = By.xpath(".//button[text()='Войти']");
@@ -26,6 +37,10 @@ public class LoginPage {
 
     //Поле ввода пароля
     private final By passwordField = By.xpath(".//input[@name='Пароль']");
+
+    //Заголовок Вход
+    private final By h2Header = By.xpath(".//div/h2");
+
 
 
     //Клик по кнопке  Войти
@@ -43,5 +58,34 @@ public class LoginPage {
     public LoginPage inputToPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
         return this;
+    }
+
+    //Ожидание загрузки кнопки Войти
+    public LoginPage waitLoginButton(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(buttonLogin));
+        return this;
+    }
+
+    //Ожидание поля ввода емэйла
+    public LoginPage waitEmailField(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(emailField));
+        return this;
+    }
+
+    //Получение Заголовка H2 (Вход)
+    public String getTextH2(){
+        return driver.findElement(h2Header).getText();
+    }
+
+    //Полный процесс логина
+    public void fullLogin(String email, String password) {
+        driver.get(url_login);
+        driver.findElement(emailField).sendKeys(email);
+        driver.findElement(passwordField).sendKeys(password);
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(buttonLogin));
+        driver.findElement(buttonLogin).click();
     }
 }

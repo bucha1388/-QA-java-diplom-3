@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class ProfilePage {
 
-    private final String url_login = "https://stellarburgers.nomoreparties.site/account/profile";
+    private final String urlLogin = "https://stellarburgers.nomoreparties.site/account/profile";
 
     public WebDriver driver;
     public ProfilePage(WebDriver driver) {
@@ -18,7 +18,7 @@ public class ProfilePage {
 
     //Открытие страницы Профиля
     public ProfilePage openPage() {
-        driver.get(url_login);
+        driver.get(urlLogin);
         return this;
     }
 

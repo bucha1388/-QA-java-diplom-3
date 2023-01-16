@@ -14,7 +14,7 @@ import static testdata.TestData.MAIN_PASSWORD;
 public class LoginPage {
 
 
-    private final String url_login = "https://stellarburgers.nomoreparties.site/login";
+    private final String urlLogin = "https://stellarburgers.nomoreparties.site/login";
 
     public WebDriver driver;
     public LoginPage(WebDriver driver) {
@@ -23,7 +23,7 @@ public class LoginPage {
 
     //Открытие страницы регистрации
     public LoginPage openPage() {
-        driver.get(url_login);
+        driver.get(urlLogin);
         return this;
     }
 
@@ -81,11 +81,10 @@ public class LoginPage {
 
     //Полный процесс логина
     public void fullLogin(String email, String password) {
-        driver.get(url_login);
+        driver.get(urlLogin);
         driver.findElement(emailField).sendKeys(email);
         driver.findElement(passwordField).sendKeys(password);
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(buttonLogin));
+        waitLoginButton();
         driver.findElement(buttonLogin).click();
     }
 }

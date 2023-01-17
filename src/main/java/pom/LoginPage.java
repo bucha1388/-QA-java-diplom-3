@@ -1,15 +1,10 @@
 package pom;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
-import static testdata.TestData.MAIN_EMAIL;
-import static testdata.TestData.MAIN_PASSWORD;
 
 public class LoginPage {
 

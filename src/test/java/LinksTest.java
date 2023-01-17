@@ -7,11 +7,9 @@ import org.junit.Test;
 import pom.LoginPage;
 import pom.MainPage;
 import pom.ProfilePage;
-import pom.RegisterPage;
 
 import static org.hamcrest.CoreMatchers.is;
 import static testdata.TestData.*;
-import static testdata.TestData.WRONG_PASSWORD;
 
 public class LinksTest {
 
